@@ -30,22 +30,21 @@ function getMarkerColor(depth) {
 // Legends
 let legend = L.control({ position: 'bottomright' });
 
-legend.onAdd = function(map) {
-  let div = L.DomUtil.create('div', 'info legend');
-  let depths = [0, 10, 30, 50, 70, 90];
-  let labels = [];
+legend.onAdd = function (map) {
+  
+  var div = L.DomUtil.create('div', 'info legend'),
+    grades = [0, 10, 30, 50, 70, 90],
+    colors = ["lightgreen", "yellow", "gold", "orange", "orangered", "red"],
+    labels = [];
 
-  for (let i = 0; i < depths.length; i++) {
-    let from = depths[i];
-    let to = depths[i + 1];
 
-    labels.push(
-      '<i style="background:' + getMarkerColor(from + 1) + '"></i> ' +
-      from + (to ? '&ndash;' + to + ' km' : '+ km')
-    );
+  // loop through our depth intervals and generate a label with a colored square for each interval
+  for (var i = 0; i < grades.length; i++) {
+    div.innerHTML +=
+      '<i style="background:' + colors[i] + '"></i> ' +
+      grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
   }
 
-  div.innerHTML = labels.join('<br>');
   return div;
 };
 
@@ -73,6 +72,8 @@ d3.json(url).then(function(data) {
     }
   }).addTo(map);
 });
+
+
 
 
 
