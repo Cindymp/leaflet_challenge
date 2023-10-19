@@ -22,8 +22,8 @@ function getMarkerColor(depth) {
   return depth > 90 ? 'red' :
          depth > 70 ? 'orangered' :
          depth > 50 ? 'orange' :
-         depth > 30 ? 'yellow' :
-         depth > 10 ? 'green' :
+         depth > 30 ? 'gold' :
+         depth > 10 ? 'yellow' :
          'lightgreen';
 }
 
